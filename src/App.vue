@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
+import Test from "./components/TestComponent.vue";
 
 // FIXME add following
-// Router, Pinia, vitest, cypress
+// Pinia, vitest, cypress
 </script>
 
 <template>
@@ -14,7 +15,12 @@ import HelloWorld from "./components/HelloWorld.vue";
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+
+  <router-link to="/test">Go To Test</router-link>
+  <router-link to="/">Go To Home</router-link>
+
   <HelloWorld msg="Vite + Vue" />
+  <Test>test</Test>
 </template>
 
 <style scoped>
