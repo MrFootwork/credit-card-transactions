@@ -2,7 +2,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 
 // FIXME add following
-// vitest, cypress
+// cypress
 </script>
 
 <template>
