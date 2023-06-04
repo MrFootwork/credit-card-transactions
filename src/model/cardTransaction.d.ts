@@ -1,7 +1,7 @@
 import type Transaction from "./transaction";
 
-type cardTransaction = {
+type cardTransactions = {
   [cardId: string]: Transaction[];
 };
 
-export default cardTransaction;
+export default cardTransactions;

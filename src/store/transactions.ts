@@ -3,13 +3,13 @@ import { ref, computed } from "vue";
 
 import { transactions as rawData } from "../../data/transactions";
 import type Transaction from "../model/transaction";
-import type CardTransaction from "../model/cardTransaction";
+import type CardTransactions from "../model/cardTransaction";
 
 import { useSelection } from "../store/selection";
 
 export const useTransactions = defineStore("transactions", () => {
   // state
-  const transactionsRaw = ref<CardTransaction>({});
+  const transactionsRaw = ref<CardTransactions>({});
 
   const selectionStore = useSelection();
   const { cardId, minimalAmount } = storeToRefs(selectionStore);
