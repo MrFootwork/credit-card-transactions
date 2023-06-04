@@ -6,7 +6,7 @@ import type Card from "../model/card.d.ts";
 
 export const useCards = defineStore("cards", () => {
   // state
-  const cards = ref<Card[]>();
+  const cards = ref<Card[]>([]);
   // getters (computed())
   // actions
   async function fetchCards() {
