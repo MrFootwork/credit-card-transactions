@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 
 import { useCards } from "../store/cards";
 import { useTransactions } from "../store/transactions";
+import { useSelection } from "../store/selection";
 
 import CardSelector from "../components/CardSelector.vue";
 import AmountFilter from "../components/AmountFilter.vue";
@@ -14,6 +15,15 @@ const { fetchCards } = cardsStore;
 const transactionsStore = useTransactions();
 const { fetchTransactions } = transactionsStore;
 
+const selectionStore = useSelection();
+const { setMinimalAmount } = selectionStore;
+
+const value = ref(0);
+
+function setFilter() {
+  setMinimalAmount(value.value);
+}
+
 onBeforeMount(async () => {
   await fetchCards();
   await fetchTransactions();
@@ -23,7 +33,11 @@ onBeforeMount(async () => {
 <template>
   <div class="wrapper app">
     <CardSelector></CardSelector>
-    <AmountFilter></AmountFilter>
+    <AmountFilter
+      v-model="value"
+      :options="{ currency: 'EUR' }"
+      @update:model-value="setFilter"
+    />
     <TransactionList></TransactionList>
   </div>
 </template>
