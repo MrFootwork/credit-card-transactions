@@ -5,16 +5,25 @@ import { storeToRefs } from "pinia";
 
 const cardsStore = useCards();
 const { cards } = storeToRefs(cardsStore);
-// const { fetchCards } = cardsStore;
 </script>
 
 <template>
-  <div>
-    <div v-for="card in cards" :key="card.id">
-      Card here: {{ card.description }}
-      <CardSelectorBankingCard />
-    </div>
+  <div class="wrapper">
+    <CardSelectorBankingCard
+      v-for="card in cards"
+      :key="card.id"
+      :card="card"
+    />
+    <!-- <div v-for="card in cards" :key="card.id">
+      <CardSelectorBankingCard :card="card" />
+    </div> -->
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+}
+</style>
