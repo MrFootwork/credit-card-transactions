@@ -1,9 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <div>This is TestComponent 🎉</div>
 </template>
 
 <style scoped></style>
