@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, watch } from "vue";
 
 import { useCards } from "../store/cards";
 import { useTransactions } from "../store/transactions";
@@ -8,6 +8,7 @@ import { useSelection } from "../store/selection";
 import CardSelector from "../components/CardSelector.vue";
 import AmountFilter from "../components/AmountFilter.vue";
 import TransactionList from "../components/TransactionList.vue";
+import { storeToRefs } from "pinia";
 
 const cardsStore = useCards();
 const { fetchCards } = cardsStore;
@@ -16,6 +17,7 @@ const transactionsStore = useTransactions();
 const { fetchTransactions } = transactionsStore;
 
 const selectionStore = useSelection();
+const { cardId } = storeToRefs(selectionStore);
 const { setMinimalAmount } = selectionStore;
 
 const value = ref(0);
@@ -23,6 +25,10 @@ const value = ref(0);
 function setFilter() {
   setMinimalAmount(value.value);
 }
+
+watch(cardId, (newCardId, oldCardId) => {
+  if (newCardId !== oldCardId) setMinimalAmount(0);
+});
 
 onBeforeMount(async () => {
   await fetchCards();

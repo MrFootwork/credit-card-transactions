@@ -11,7 +11,7 @@ Acceptance Criteria:
 [x] The transactions have a same background color than the card
 [x] There should be a filter field between the cards and the transactions
 [x] The user can filter transactions by inputting amount to the filter fields. Transactions with the amount in the fields or greater should be left visible
-[ ] If the user changes a selected card and there is content in the filter fields, the content should be reset
+[x] If the user changes a selected card and there is content in the filter fields, the content should be reset
 
 # Implementation Details
 

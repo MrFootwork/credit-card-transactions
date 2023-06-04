@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
+
+import { useSelection } from "../store/selection";
+
 import { useCurrencyInput } from "vue-currency-input";
-import { ref } from "vue";
 
 const props = defineProps<{
   modelValue: number;
   options: { currency: string };
 }>();
 
-const input = ref("");
+const selectionStore = useSelection();
+const { minimalAmount } = storeToRefs(selectionStore);
 
 const { inputRef } = useCurrencyInput(props.options);
 </script>
@@ -15,7 +19,12 @@ const { inputRef } = useCurrencyInput(props.options);
 <template>
   <div class="wrapper">
     <label for="input-amount"><h3>Amount Filter</h3></label>
-    <input id="input-amount" ref="inputRef" v-model="input" type="text" />
+    <input
+      id="input-amount"
+      ref="inputRef"
+      v-model="minimalAmount"
+      type="text"
+    />
   </div>
 </template>
 
