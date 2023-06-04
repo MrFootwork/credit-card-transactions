@@ -2,8 +2,6 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import "./assets/stylesheets/style.css";
 import "./assets/stylesheets/colors.css";
-// FIXME add color.css
-// grey card and blue card
 
 import App from "./App.vue";
 import router from "./router/index.js";

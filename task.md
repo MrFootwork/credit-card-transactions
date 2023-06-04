@@ -23,6 +23,3 @@ For the purpose of this task, consider the following:
 - You can use Vue 2 or Vue 3, VueCLI or vite or a manual build, the choice is yours
 - For the data, you can simply import them statically, though you can consider the asynchronous nature of REST calls and build your app accordingly
 - Consider the usage of state management, routing, typescript, linters, testing
-
-<!-- FIXME Use currency input -->
-<!-- https://dm4t2.github.io/vue-currency-input/guide.html#creating-a-custom-component -->

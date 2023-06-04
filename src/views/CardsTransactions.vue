@@ -22,7 +22,6 @@ onBeforeMount(async () => {
 
 <template>
   <div class="wrapper app">
-    <!-- FIXME add all needed components -->
     <CardSelector></CardSelector>
     <AmountFilter></AmountFilter>
     <TransactionList></TransactionList>
