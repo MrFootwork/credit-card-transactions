@@ -14,6 +14,9 @@ const selectionStore = useSelection();
 const { minimalAmount } = storeToRefs(selectionStore);
 
 const { inputRef } = useCurrencyInput(props.options);
+
+// FIXME check out external prop changes
+// https://dm4t2.github.io/vue-currency-input/guide.html#external-props-changes
 </script>
 
 <template>
