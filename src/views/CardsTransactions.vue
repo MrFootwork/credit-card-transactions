@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useCards } from "../store/cards";
 import { useTransactions } from "../store/transactions";
+import { useSelection } from "../store/selection";
 
 const cardsStore = useCards();
 const { cards } = storeToRefs(cardsStore);
@@ -10,13 +11,17 @@ const { fetchCards } = cardsStore;
 const transactionsStore = useTransactions();
 const { transactions } = storeToRefs(transactionsStore);
 const { fetchTransactions } = transactionsStore;
+
+const selectionStore = useSelection();
+const { cardId } = storeToRefs(selectionStore);
+const { selectCardByID } = selectionStore;
 </script>
 
 <template>
   <div>
-    <p>This is page CardsTransactions</p>
-    <router-link to="/test">Go To Test</router-link>
-    <router-link to="/hello">Go To Hello</router-link>
+    <!-- FIXME add all needed components -->
+    <p>selected card: {{ cardId }}</p>
+    <button @click="selectCardByID('lkmfkl-mlfkm-dlkfm')">Select Card</button>
     <pre>{{ cards }}</pre>
     <button @click="fetchCards">Fetch Cards</button>
     <pre>{{ transactions }}</pre>

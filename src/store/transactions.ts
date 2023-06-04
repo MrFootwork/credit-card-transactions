@@ -1,21 +1,49 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore, storeToRefs } from "pinia";
+import { ref, computed } from "vue";
 
 import { transactions as rawData } from "../../data/transactions";
-// import type Transaction from "../model/transaction.d.ts";
+import type Transaction from "../model/transaction";
+import type CardTransaction from "../model/cardTransaction";
+
+import { useSelection } from "../store/selection";
 
 export const useTransactions = defineStore("transactions", () => {
   // state
-  const transactions = ref({});
+  const transactionsRaw = ref<CardTransaction>({});
+
+  const selectionStore = useSelection();
+  const { cardId, minimalAmount } = storeToRefs(selectionStore);
 
   // getters (computed())
-  // FIXME keep transactions private
-  // instead provide 1. all transactions and 2. filtered transactions
+  const transactions = computed(() => {
+    if (cardId.value) return transactionsRaw.value[cardId.value];
+
+    const cardTransactions = Object.values(transactionsRaw.value);
+    const cardIDs = Object.keys(transactionsRaw.value);
+
+    const transactionsAll: Transaction[] = [];
+
+    cardTransactions.forEach((transactionSet, i) => {
+      const transactionSetIsSelected =
+        cardId.value === cardIDs[i] || !cardId.value;
+
+      if (!transactionSetIsSelected) return;
+
+      // push only transactions above minimal amount
+      transactionSet.forEach((transaction) => {
+        if (minimalAmount.value <= transaction.amount) {
+          transactionsAll.push(transaction);
+        }
+      });
+    });
+
+    return transactionsAll;
+  });
 
   // actions
   async function fetchTransactions() {
     setTimeout(() => {
-      transactions.value = rawData;
+      transactionsRaw.value = rawData;
     }, 600);
   }
 

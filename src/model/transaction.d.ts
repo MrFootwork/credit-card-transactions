@@ -1,7 +1,7 @@
-type Transactions = {
+type Transaction = {
   id: string;
   amount: number;
   description: string;
 };
 
-export default Transactions;
+export default Transaction;
