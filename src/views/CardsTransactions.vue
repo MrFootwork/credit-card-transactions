@@ -5,6 +5,8 @@ import { useCards } from "../store/cards";
 import { useTransactions } from "../store/transactions";
 
 import CardSelector from "../components/CardSelector.vue";
+import AmountFilter from "../components/AmountFilter.vue";
+import TransactionList from "../components/TransactionList.vue";
 
 const cardsStore = useCards();
 const { fetchCards } = cardsStore;
@@ -22,13 +24,15 @@ onBeforeMount(async () => {
   <div class="wrapper app">
     <!-- FIXME add all needed components -->
     <CardSelector></CardSelector>
+    <AmountFilter></AmountFilter>
+    <TransactionList></TransactionList>
   </div>
 </template>
 
 <style scoped lang="scss">
 .wrapper.app {
   height: 100vh;
-  width: min(95vw, 42rem);
+  width: min(85vw, 38rem);
   margin: auto;
 }
 </style>

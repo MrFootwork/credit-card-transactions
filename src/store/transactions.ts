@@ -5,27 +5,33 @@ import { transactions as rawData } from "../../data/transactions";
 import type Transaction from "../model/transaction";
 import type CardTransactions from "../model/cardTransaction";
 
-import { useSelection } from "../store/selection";
+import { useSelection } from "./selection";
 
 export const useTransactions = defineStore("transactions", () => {
-  // state
-  const transactionsRaw = ref<CardTransactions>({});
-
+  /*************************
+   *  States
+   ************************/
+  // selection store
   const selectionStore = useSelection();
   const { cardId, minimalAmount } = storeToRefs(selectionStore);
 
-  // getters (computed())
-  const transactions = computed(() => {
-    if (cardId.value) return transactionsRaw.value[cardId.value];
+  // store state
+  const transactionsRaw = ref<CardTransactions>({});
 
-    const cardTransactions = Object.values(transactionsRaw.value);
-    const cardIDs = Object.keys(transactionsRaw.value);
+  /*************************
+   * getters (computed())
+   ************************/
+  const cardTransactions = computed(() => Object.values(transactionsRaw.value));
+  const cardIDs = computed(() => Object.keys(transactionsRaw.value));
+  // filtered transactions by cardId and minimal amount
+  const transactions = computed(() => {
+    if (!cardId.value) return [];
 
     const transactionsAll: Transaction[] = [];
 
-    cardTransactions.forEach((transactionSet, i) => {
+    cardTransactions.value.forEach((transactionSet, i) => {
       const transactionSetIsSelected =
-        cardId.value === cardIDs[i] || !cardId.value;
+        cardId.value === cardIDs.value[i] || !cardId.value;
 
       if (!transactionSetIsSelected) return;
 
@@ -40,7 +46,10 @@ export const useTransactions = defineStore("transactions", () => {
     return transactionsAll;
   });
 
-  // actions
+  /*************************
+   * actions
+   ************************/
+
   async function fetchTransactions() {
     setTimeout(() => {
       transactionsRaw.value = rawData;

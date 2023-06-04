@@ -1,35 +1,72 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from "vue";
+import { useSelection } from "../store/selection";
+
+const selectionStore = useSelection();
+const { selectCardByID } = selectionStore;
+
+const props = defineProps<{
   card: {
     id: string;
     description: string;
   };
 }>();
+
+function registerSelection() {
+  selectCardByID(props.card.id);
+}
+
+// returns 'business' or 'private' based on selection
+const cardType = computed(() => {
+  return props.card.description.split(" ")[0].toLowerCase();
+});
 </script>
 
 <template>
-  <div class="wrapper card">
-    <label> {{ card.description }}</label>
-    <p>{{ card.id }}</p>
-  </div>
+  <label class="wrapper card" :for="card.id" :class="cardType">
+    <input
+      :id="card.id"
+      type="radio"
+      name="banking-card"
+      :value="card.id"
+      @click="registerSelection"
+    />
+    <label :for="card.id" class="description">{{ card.description }}</label>
+    <label :for="card.id" class="id">{{ card.id }}</label>
+  </label>
 </template>
 
 <style scoped lang="scss">
+label {
+  cursor: pointer;
+}
 .wrapper.card {
-  background-color: green;
+  &.private {
+    background-color: var(--card-background-private);
+  }
+  &.business {
+    background-color: var(--card-background-business);
+  }
 
-  margin: 1rem;
-  padding: 1rem;
+  aspect-ratio: 1.586;
+  width: clamp(9rem, 40vw, 16rem);
+  border-radius: 1rem;
+
+  margin: 2rem 0;
+  padding: 1.5rem;
 
   display: flex;
   flex-flow: column;
+  justify-content: start;
 
-  label {
-    text-align: left;
+  input {
+    display: none;
   }
 
-  p {
+  label {
+    line-height: 2rem;
     text-align: left;
+    text-indent: 0.1vw;
   }
 }
 </style>

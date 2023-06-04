@@ -10,9 +10,10 @@ const { cards } = storeToRefs(cardsStore);
 <template>
   <div class="wrapper">
     <CardSelectorBankingCard
-      v-for="card in cards"
+      v-for="(card, i) in cards"
       :key="card.id"
       :card="card"
+      :tabindex="i + 1"
     />
     <!-- <div v-for="card in cards" :key="card.id">
       <CardSelectorBankingCard :card="card" />

@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HelloWorld from "../components/HelloWorld.vue";
-import TestComponent from "../components/TestComponent.vue";
 import CardsTransactions from "../views/CardsTransactions.vue";
 
 const routes = [
@@ -9,12 +7,12 @@ const routes = [
     component: CardsTransactions,
   },
   {
-    path: "/hello",
-    component: HelloWorld,
+    path: "/private",
+    component: CardsTransactions,
   },
   {
-    path: "/test",
-    component: TestComponent,
+    path: "/business",
+    component: CardsTransactions,
   },
 ];
 
