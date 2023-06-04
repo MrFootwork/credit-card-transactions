@@ -1,8 +1,5 @@
 <script setup lang="ts">
-// FIXME Use currency input
-// https://dm4t2.github.io/vue-currency-input/guide.html#creating-a-custom-component
 import { useCurrencyInput } from "vue-currency-input";
-// import { watchDebounced } from "@vueuse/core";
 import { ref } from "vue";
 
 const props = defineProps<{
@@ -12,14 +9,7 @@ const props = defineProps<{
 
 const input = ref("");
 
-// const emit = defineEmits(["update:modelValue"]);
-
 const { inputRef } = useCurrencyInput(props.options);
-
-// watchDebounced(input, (value) => emit("update:modelValue", value), {
-//   debounce: 1000,
-//   maxWait: 5000,
-// });
 </script>
 
 <template>
