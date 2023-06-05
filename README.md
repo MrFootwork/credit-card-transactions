@@ -20,6 +20,10 @@ Use your terminal of choice and navigate to the directory where you want to crea
 ```shell
 git clone https://github.com/MrFootwork/credit-card-transactions
 ```
+Change into the new directory
+```shell
+cd credit-card-transactions
+```
 ### Install Dependencies
 Run
 ```shell
