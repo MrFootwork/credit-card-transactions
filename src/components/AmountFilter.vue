@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { watch } from "vue";
 
 import { useSelection } from "../store/selection";
 
@@ -7,16 +8,31 @@ import { useCurrencyInput } from "vue-currency-input";
 
 const props = defineProps<{
   modelValue: number;
-  options: { currency: string };
+  options: { currency: string; precision: { min?: number; max?: number } };
 }>();
 
 const selectionStore = useSelection();
 const { minimalAmount } = storeToRefs(selectionStore);
 
-const { inputRef } = useCurrencyInput(props.options);
-
-// FIXME check out external prop changes
+const { inputRef, setOptions, setValue } = useCurrencyInput(
+  props.options,
+  true
+);
+// needed because of external prop changes
 // https://dm4t2.github.io/vue-currency-input/guide.html#external-props-changes
+watch(
+  () => minimalAmount.value,
+  (value) => {
+    setValue(value);
+  }
+);
+
+watch(
+  () => props.options,
+  (options) => {
+    setOptions(options);
+  }
+);
 </script>
 
 <template>

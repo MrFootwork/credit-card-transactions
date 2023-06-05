@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useSelection } from "../store/selection";
+import router from "../router";
 
 const selectionStore = useSelection();
 const { selectCardByID } = selectionStore;
@@ -14,6 +15,7 @@ const props = defineProps<{
 
 function registerSelection() {
   selectCardByID(props.card.id);
+  router.push(`/${cardType.value}`);
 }
 
 // returns 'business' or 'private' based on selection

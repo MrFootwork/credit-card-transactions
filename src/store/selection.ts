@@ -17,9 +17,13 @@ export const useSelection = defineStore("selection", () => {
       | "private"
       | "business";
   });
+
   // actions
   function selectCardByID(id: string) {
-    cardId.value = id;
+    if (cardId.value !== id) {
+      minimalAmount.value = 0;
+      cardId.value = id;
+    }
   }
 
   function setMinimalAmount(amount: number) {

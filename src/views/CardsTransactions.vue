@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { onBeforeMount, watch } from "vue";
+import { onBeforeMount, ref } from "vue";
 
 import { useCards } from "../store/cards";
 import { useTransactions } from "../store/transactions";
-import { useSelection } from "../store/selection";
 
 import CardSelector from "../components/CardSelector.vue";
 import AmountFilter from "../components/AmountFilter.vue";
 import TransactionList from "../components/TransactionList.vue";
-import { storeToRefs } from "pinia";
 
 const cardsStore = useCards();
 const { fetchCards } = cardsStore;
@@ -16,17 +14,13 @@ const { fetchCards } = cardsStore;
 const transactionsStore = useTransactions();
 const { fetchTransactions } = transactionsStore;
 
-const selectionStore = useSelection();
-const { cardId, minimalAmount } = storeToRefs(selectionStore);
-const { setMinimalAmount } = selectionStore;
+const currencyInputOptions = {
+  locale: "de-DE",
+  currency: "EUR",
+  precision: { min: 2 },
+};
 
-function setFilter() {
-  setMinimalAmount(minimalAmount.value);
-}
-
-watch(cardId, (newCardId, oldCardId) => {
-  if (newCardId !== oldCardId) setMinimalAmount(0);
-});
+const modelValue = ref(0);
 
 onBeforeMount(async () => {
   await fetchCards();
@@ -37,11 +31,7 @@ onBeforeMount(async () => {
 <template>
   <div class="wrapper app">
     <CardSelector></CardSelector>
-    <AmountFilter
-      v-model="minimalAmount"
-      :options="{ currency: 'EUR' }"
-      @update:model-value="setFilter"
-    />
+    <AmountFilter v-model="modelValue" :options="currencyInputOptions" />
     <TransactionList></TransactionList>
   </div>
 </template>

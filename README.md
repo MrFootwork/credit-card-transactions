@@ -1,18 +1,33 @@
-# Vue 3 + TypeScript + Vite
+# Cards and Transactions Overview
+This is the implementation of a coding challenge with the purpose to build a card and transactions overview page.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Acceptance Criteria:
 
-## Recommended IDE Setup
+- [x] User can select one of the cards
+- [x] The transactions of the selected card will be displayed
+- [x] The transactions have a same background color than the card
+- [x] There should be a filter field between the cards and the transactions
+- [x] The user can filter transactions by inputting amount to the filter fields. Transactions with the amount in the fields or greater should be left visible
+- [x] If the user changes a selected card and there is content in the filter fields, the content should be reset
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Installation
+### Prerequisites
+- [Node](https://nodejs.org/en/download/)
+- [git](https://git-scm.com/downloads)
 
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### Choose a Project Directory
+Use your terminal of choice and navigate to the directory where you want to create the project folder. Clone the project into the chosen directory by running
+```shell
+git clone https://github.com/MrFootwork/credit-card-transactions
+```
+### Install Dependencies
+Run
+```shell
+npm install
+```
+### Run locally
+Run
+```shell
+npm run dev
+```
+The app should now run on http://localhost:4000.
