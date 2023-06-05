@@ -7,8 +7,7 @@ export const useSelection = defineStore("selection", () => {
   const cardId = ref("");
   const minimalAmount = ref(0);
   // card store
-  const cardStore = useCards();
-  const { cards } = storeToRefs(cardStore);
+  const { cards } = storeToRefs(useCards());
 
   // getters (computed())
   const cardType = computed(() => {

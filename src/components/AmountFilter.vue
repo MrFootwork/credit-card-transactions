@@ -10,8 +10,10 @@ const props = defineProps<{
   modelValue: number;
   options: { currency: string; precision: { min?: number; max?: number } };
 }>();
+
 // selection store
 const { minimalAmount } = storeToRefs(useSelection());
+
 // currency input component
 const { inputRef, setValue } = useCurrencyInput(props.options, true);
 
