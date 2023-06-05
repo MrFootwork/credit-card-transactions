@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount } from "vue";
 
 import { useCards } from "../store/cards";
 import { useTransactions } from "../store/transactions";
@@ -7,6 +7,9 @@ import { useTransactions } from "../store/transactions";
 import CardSelector from "../components/CardSelector.vue";
 import AmountFilter from "../components/AmountFilter.vue";
 import TransactionList from "../components/TransactionList.vue";
+
+import { storeToRefs } from "pinia";
+import { useSelection } from "../store/selection";
 
 const cardsStore = useCards();
 const { fetchCards } = cardsStore;
@@ -17,10 +20,11 @@ const { fetchTransactions } = transactionsStore;
 const currencyInputOptions = {
   locale: "de-DE",
   currency: "EUR",
-  precision: { min: 2 },
+  precision: { min: 2, max: 2 },
 };
 
-const modelValue = ref(0);
+const selectionStore = useSelection();
+const { minimalAmount } = storeToRefs(selectionStore);
 
 onBeforeMount(async () => {
   await fetchCards();
@@ -31,7 +35,7 @@ onBeforeMount(async () => {
 <template>
   <div class="wrapper app">
     <CardSelector></CardSelector>
-    <AmountFilter v-model="modelValue" :options="currencyInputOptions" />
+    <AmountFilter v-model="minimalAmount" :options="currencyInputOptions" />
     <TransactionList></TransactionList>
   </div>
 </template>

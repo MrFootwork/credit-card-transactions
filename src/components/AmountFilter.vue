@@ -10,40 +10,24 @@ const props = defineProps<{
   modelValue: number;
   options: { currency: string; precision: { min?: number; max?: number } };
 }>();
+// selection store
+const { minimalAmount } = storeToRefs(useSelection());
+// currency input component
+const { inputRef, setValue } = useCurrencyInput(props.options, true);
 
-const selectionStore = useSelection();
-const { minimalAmount } = storeToRefs(selectionStore);
-
-const { inputRef, setOptions, setValue } = useCurrencyInput(
-  props.options,
-  true
-);
-// needed because of external prop changes
+// watcher needed because of external prop changes
+// selection store sets value to 0 on card change
 // https://dm4t2.github.io/vue-currency-input/guide.html#external-props-changes
 watch(
   () => minimalAmount.value,
-  (value) => {
-    setValue(value);
-  }
-);
-
-watch(
-  () => props.options,
-  (options) => {
-    setOptions(options);
-  }
+  (value) => setValue(value)
 );
 </script>
 
 <template>
   <div class="wrapper">
     <label for="input-amount"><h3>Amount Filter</h3></label>
-    <input
-      id="input-amount"
-      ref="inputRef"
-      v-model="minimalAmount"
-      type="text"
-    />
+    <input id="input-amount" ref="inputRef" />
   </div>
 </template>
 

@@ -15,9 +15,6 @@ const { cards } = storeToRefs(cardsStore);
       :card="card"
       :tabindex="i + 1"
     />
-    <!-- <div v-for="card in cards" :key="card.id">
-      <CardSelectorBankingCard :card="card" />
-    </div> -->
   </div>
 </template>
 
