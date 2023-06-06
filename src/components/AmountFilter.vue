@@ -24,6 +24,8 @@ watch(
   () => minimalAmount.value,
   (value) => setValue(value)
 );
+// TODO add debounce
+// https://vueuse.org/shared/watchDebounced/#usage
 </script>
 
 <template>
