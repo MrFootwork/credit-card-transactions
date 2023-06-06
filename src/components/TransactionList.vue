@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TransactionListItem from "./TransactionListItem.vue";
-import { useTransactions } from "../store/transactions";
-import { storeToRefs } from "pinia";
+import TransactionListItem from './TransactionListItem.vue';
+import { useTransactions } from '../store/transactions';
+import { storeToRefs } from 'pinia';
 
 const transactionStore = useTransactions();
 const { transactions } = storeToRefs(transactionStore);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { useSelection } from "../store/selection";
-import router from "../router";
+import { computed } from 'vue';
+import { useSelection } from '../store/selection';
+import router from '../router';
 
 const selectionStore = useSelection();
 const { selectCardByID } = selectionStore;
@@ -20,32 +20,36 @@ function registerSelection() {
 
 // returns 'business' or 'private' based on selection
 const cardType = computed(() => {
-  return props.card.description.split(" ")[0].toLowerCase();
+  return props.card.description.split(' ')[0].toLowerCase();
 });
 </script>
 
 <template>
-  <label class="wrapper card" :for="card.id" :class="cardType">
+  <label :for="card.id" class="wrapper card" :class="cardType">
+    <label :for="card.id" class="description">{{ card.description }}</label>
+    <label :for="card.id" class="id">{{ card.id }}</label>
     <input
       :id="card.id"
       type="radio"
       name="banking-card"
       :value="card.id"
+      tabindex="0"
       @click="registerSelection"
     />
-    <label :for="card.id" class="description">{{ card.description }}</label>
-    <label :for="card.id" class="id">{{ card.id }}</label>
   </label>
 </template>
 
 <style scoped lang="scss">
-label {
+label,
+input {
   cursor: pointer;
 }
+
 .wrapper.card {
   &.private {
     background-color: var(--card-background-private);
   }
+
   &.business {
     background-color: var(--card-background-business);
   }
@@ -61,8 +65,14 @@ label {
   flex-flow: column;
   justify-content: start;
 
-  input {
-    display: none;
+  // FIXME add checked style
+  &:focus-within {
+    outline: 3px solid var(--font-color-contrast);
+    outline-offset: 2px;
+  }
+
+  input[type='radio'] {
+    opacity: 0;
   }
 
   label {

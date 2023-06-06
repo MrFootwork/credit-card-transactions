@@ -19,10 +19,6 @@
   box-sizing: border-box;
 }
 
-h3 {
-  color: var(--font-color-light);
-}
-
 a {
   font-weight    : 500;
   color          : #646cff;
@@ -78,10 +74,6 @@ pre {
 @media (prefers-color-scheme: light) {
   :root {
     background-color: #ffffff;
-  }
-
-  h3 {
-    color: #213547;
   }
 
   a:hover {

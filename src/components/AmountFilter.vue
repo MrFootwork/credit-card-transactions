@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { watch } from "vue";
+import { storeToRefs } from 'pinia';
+import { watch } from 'vue';
 
-import { useSelection } from "../store/selection";
+import { useSelection } from '../store/selection';
 
-import { useCurrencyInput } from "vue-currency-input";
+import { useCurrencyInput } from 'vue-currency-input';
 
 const props = defineProps<{
   modelValue: number;
@@ -38,7 +38,7 @@ watch(
   margin-bottom: min(10vw, 5rem);
 
   label {
-    color: var(--font-color);
+    color: var(--font-color-contrast);
   }
 
   input {
@@ -46,6 +46,14 @@ watch(
     padding: 0.6rem;
     font-size: large;
     text-align: end;
+
+    border: 1px solid var(--font-color-contrast);
+    border-radius: 4px;
+
+    &:focus {
+      outline: 3px solid var(--font-color-contrast);
+      outline-offset: 2px;
+    }
   }
 }
 </style>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { onBeforeMount } from "vue";
+import { onBeforeMount } from 'vue';
 
-import { useCards } from "../store/cards";
-import { useTransactions } from "../store/transactions";
+import { useCards } from '../store/cards';
+import { useTransactions } from '../store/transactions';
 
-import CardSelector from "../components/CardSelector.vue";
-import AmountFilter from "../components/AmountFilter.vue";
-import TransactionList from "../components/TransactionList.vue";
+import CardSelector from '../components/CardSelector.vue';
+import AmountFilter from '../components/AmountFilter.vue';
+import TransactionList from '../components/TransactionList.vue';
 
-import { storeToRefs } from "pinia";
-import { useSelection } from "../store/selection";
+import { storeToRefs } from 'pinia';
+import { useSelection } from '../store/selection';
 
 const cardsStore = useCards();
 const { fetchCards } = cardsStore;
@@ -18,8 +18,8 @@ const transactionsStore = useTransactions();
 const { fetchTransactions } = transactionsStore;
 
 const currencyInputOptions = {
-  locale: "de-DE",
-  currency: "EUR",
+  locale: 'de-DE',
+  currency: 'EUR',
   precision: { min: 2, max: 2 },
 };
 

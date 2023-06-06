@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import type Transaction from "../model/transaction";
-import { useSelection } from "../store/selection";
-import { computed } from "vue";
+import { storeToRefs } from 'pinia';
+import type Transaction from '../model/transaction';
+import { useSelection } from '../store/selection';
+import { computed } from 'vue';
 
 const props = defineProps<{ transaction: Transaction }>();
 
@@ -10,9 +10,9 @@ const selectionStore = useSelection();
 const { cardType } = storeToRefs(selectionStore);
 
 const amountCurrency = computed(() => {
-  return props.transaction.amount.toLocaleString("de-DE", {
-    style: "currency",
-    currency: "EUR",
+  return props.transaction.amount.toLocaleString('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
   });
 });
 </script>

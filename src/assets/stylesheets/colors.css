@@ -1,5 +1,16 @@
 :root {
-  --card-background-private: rgba(235, 235, 235 );
-  --card-background-business: rgba(198, 235, 255 );
-  --font-color-light: rgba(255, 255, 255, 0.87)
+  --card-background-private: rgba(235, 235, 235);
+  --card-background-business: rgba(198, 235, 255);
+  --font-color-fixed: rgba(255, 255, 255, 0.87);
+  --font-color-contrast: white;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: #ffffff;
+    --card-background-private: rgba(235, 235, 235);
+    --card-background-business: rgba(198, 235, 255);
+    --font-color-fixed: rgba(255, 255, 255, 0.87);
+    --font-color-contrast: #213547;
+  }
 }
