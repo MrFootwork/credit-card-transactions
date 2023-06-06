@@ -18,5 +18,6 @@ module.exports = {
         order: ['script', 'template', 'style'],
       },
     ],
+    'prettier/prettier': ['error', { endOfLine: 'off' }],
   },
 };

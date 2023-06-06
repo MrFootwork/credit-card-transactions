@@ -25,21 +25,27 @@ const cardType = computed(() => {
 </script>
 
 <template>
-  <label :for="card.id" class="wrapper card" :class="cardType">
-    <label :for="card.id" class="description">{{ card.description }}</label>
-    <label :for="card.id" class="id">{{ card.id }}</label>
-    <input
-      :id="card.id"
-      type="radio"
-      name="banking-card"
-      :value="card.id"
-      tabindex="0"
-      @click="registerSelection"
-    />
-  </label>
+  <li>
+    <label :for="card.id" class="wrapper card" :class="cardType">
+      <label :for="card.id" class="description">{{ card.description }}</label>
+      <label :for="card.id" class="id">{{ card.id }}</label>
+      <input
+        :id="card.id"
+        type="radio"
+        name="banking-card"
+        :value="card.id"
+        tabindex="0"
+        @click="registerSelection"
+      />
+    </label>
+  </li>
 </template>
 
 <style scoped lang="scss">
+li {
+  list-style-type: none;
+}
+
 label,
 input {
   cursor: pointer;

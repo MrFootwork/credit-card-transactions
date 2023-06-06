@@ -9,19 +9,32 @@ const { transactions } = storeToRefs(transactionStore);
 
 <template>
   <div>
-    <ul>
+    <TransitionGroup name="list" tag="ul">
       <TransactionListItem
         v-for="transaction in transactions"
         :key="transaction.id"
         :transaction="transaction"
       />
-    </ul>
+    </TransitionGroup>
   </div>
 </template>
 
 <style scoped lang="scss">
-ul {
-  margin: 0;
-  padding: 0;
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
 }
 </style>

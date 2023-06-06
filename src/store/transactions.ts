@@ -1,13 +1,14 @@
-import { defineStore, storeToRefs } from "pinia";
-import { ref, computed } from "vue";
+import { defineStore, storeToRefs } from 'pinia';
+import { ref, computed } from 'vue';
 
-import { transactions as rawData } from "../../data/transactions";
-import type Transaction from "../model/transaction";
-import type CardTransactions from "../model/cardTransaction";
+// @ts-ignore
+import { transactions as rawData } from '../../data/transactions';
+import type Transaction from '../model/transaction';
+import type CardTransactions from '../model/cardTransaction';
 
-import { useSelection } from "./selection";
+import { useSelection } from './selection';
 
-export const useTransactions = defineStore("transactions", () => {
+export const useTransactions = defineStore('transactions', () => {
   /*************************
    *  States
    ************************/
@@ -15,7 +16,7 @@ export const useTransactions = defineStore("transactions", () => {
   const selectionStore = useSelection();
   const { cardId, minimalAmount } = storeToRefs(selectionStore);
 
-  // store state
+  // this store's state
   const transactionsRaw = ref<CardTransactions>({});
 
   /*************************
@@ -49,7 +50,6 @@ export const useTransactions = defineStore("transactions", () => {
   /*************************
    * actions
    ************************/
-
   async function fetchTransactions() {
     setTimeout(() => {
       transactionsRaw.value = rawData;

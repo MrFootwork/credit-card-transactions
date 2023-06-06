@@ -8,13 +8,14 @@ const { cards } = storeToRefs(cardsStore);
 </script>
 
 <template>
-  <div class="wrapper">
+  <ul class="wrapper">
+    <!-- FIXME add loader skeleton -->
     <CardSelectorBankingCard
       v-for="card in cards"
       :key="card.id"
       :card="card"
     />
-  </div>
+  </ul>
 </template>
 
 <style scoped lang="scss">
