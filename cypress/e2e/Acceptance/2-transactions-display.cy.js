@@ -6,9 +6,6 @@ context('Transactions Display', () => {
   });
 
   it('The transactions of the selected card will be displayed', () => {
-    // https://on.cypress.io/click
-    cy.get('.wrapper.card').click({ multiple: true });
-
     const cardTypes = ['private', 'business'];
 
     cardTypes.forEach((type) => {

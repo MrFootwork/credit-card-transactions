@@ -6,6 +6,23 @@ context('Color of Transaction Element', () => {
   });
 
   it('The transactions have a same background color than the card', () => {
-    // https://on.cypress.io/click
+    const cardTypes = ['private', 'business'];
+
+    // FIXME compare colors
+    // https://stackoverflow.com/questions/69501886/cypress-how-to-save-css-color-to-a-variable
+    cardTypes.forEach((type) => {
+      let cardColor;
+
+      cy.get(`.wrapper.card.${type}`)
+        .click()
+        .should('have.css', 'background-color')
+        .then((color) => (cardColor = color));
+
+      cy.get(`.transaction.${type}`).each((transaction) => {
+        cy.get(transaction)
+          .should('have.css', 'background-color')
+          .should((color) => expect(color).to.equal(cardColor));
+      });
+    });
   });
 });
