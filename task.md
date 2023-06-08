@@ -1,6 +1,6 @@
 # Cards and Transactions Overview
 
-The image in the folder gives a visual overview of how the page is intended to look like (as a minimum). 
+The image in the folder gives a visual overview of how the page is intended to look like (as a minimum).
 
 The purpose of this task is to build a card and transactions overview page. The user should be able to select one of the cards, see it's transactions and be able to filter the transactions based on the amount.
 
@@ -18,8 +18,9 @@ Acceptance Criteria:
 Build the overview page as an App using Vue. The `data` folder contains example data which your app would realistically acquire from a REST interface.
 
 For the purpose of this task, consider the following:
-- The result should be in the format of a Vue project 
-- provide a package.json and lockfile allowing to build and run it *locally*
+
+- The result should be in the format of a Vue project
+- provide a package.json and lockfile allowing to build and run it _locally_
 - You can use Vue 2 or Vue 3, VueCLI or vite or a manual build, the choice is yours
 - For the data, you can simply import them statically, though you can consider the asynchronous nature of REST calls and build your app accordingly
 - Consider the usage of state management, routing, typescript, linters, testing

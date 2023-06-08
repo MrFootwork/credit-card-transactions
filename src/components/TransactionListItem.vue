@@ -20,7 +20,7 @@ const amountCurrency = computed(() => {
 <template>
   <li class="wrapper transaction" :class="cardType">
     <p>{{ props.transaction.description }}</p>
-    <p>{{ amountCurrency }}</p>
+    <p data-cy-transaction="amount">{{ amountCurrency }}</p>
   </li>
 </template>
 
