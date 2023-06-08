@@ -8,8 +8,6 @@ context('Color of Transaction Element', () => {
   it('The transactions have a same background color than the card', () => {
     const cardTypes = ['private', 'business'];
 
-    // FIXME compare colors
-    // https://stackoverflow.com/questions/69501886/cypress-how-to-save-css-color-to-a-variable
     cardTypes.forEach((type) => {
       let cardColor;
 

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/AmountFilter.vue</title>
+    <title>Code coverage report for src/views/CardsTransactions.vue</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> AmountFilter.vue</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/views</a> CardsTransactions.vue</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>61/61</span>
+                <span class='fraction'>49/49</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>61/61</span>
+                <span class='fraction'>49/49</span>
             </div>
         
             
@@ -112,31 +112,7 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -186,64 +162,52 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script setup lang="ts"&gt;
-import { storeToRefs } from 'pinia';
-import { watch } from 'vue';
+import { onBeforeMount } from 'vue';
 &nbsp;
+import { useCards } from '../store/cards';
+import { useTransactions } from '../store/transactions';
+&nbsp;
+import CardSelector from '../components/CardSelector.vue';
+import AmountFilter from '../components/AmountFilter.vue';
+import TransactionList from '../components/TransactionList.vue';
+&nbsp;
+import { storeToRefs } from 'pinia';
 import { useSelection } from '../store/selection';
 &nbsp;
-import { useCurrencyInput } from 'vue-currency-input';
+const cardsStore = useCards();
+const { fetchCards } = cardsStore;
 &nbsp;
-const props = defineProps&lt;{
-  modelValue: number;
-  options: { currency: string; precision: { min?: number; max?: number } };
-}&gt;();
+const transactionsStore = useTransactions();
+const { fetchTransactions } = transactionsStore;
 &nbsp;
-// selection store
-const { minimalAmount } = storeToRefs(useSelection());
+const currencyInputOptions = {
+  locale: 'de-DE',
+  currency: 'EUR',
+  precision: { min: 2, max: 2 },
+};
 &nbsp;
-// currency input component
-const { inputRef, setValue } = useCurrencyInput(props.options, true);
+const selectionStore = useSelection();
+const { minimalAmount } = storeToRefs(selectionStore);
 &nbsp;
-// watcher needed because of external prop changes
-// selection store sets value to 0 on card change
-// https://dm4t2.github.io/vue-currency-input/guide.html#external-props-changes
-watch(
-  () =&gt; minimalAmount.value,
-  (value) =&gt; setValue(value)
-);
-// TODO add debounce
-// https://vueuse.org/shared/watchDebounced/#usage
+onBeforeMount(async () =&gt; {
+  await fetchCards();
+  await fetchTransactions();
+});
 &lt;/script&gt;
 &nbsp;
 &lt;template&gt;
-  &lt;div class="wrapper"&gt;
-    &lt;label for="input-amount"&gt;&lt;h3&gt;Amount Filter&lt;/h3&gt;&lt;/label&gt;
-    &lt;input id="input-amount" ref="inputRef" /&gt;
+  &lt;div class="wrapper app"&gt;
+    &lt;CardSelector&gt;&lt;/CardSelector&gt;
+    &lt;AmountFilter v-model="minimalAmount" :options="currencyInputOptions" /&gt;
+    &lt;TransactionList&gt;&lt;/TransactionList&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;style scoped lang="scss"&gt;
-.wrapper {
-  margin-bottom: min(10vw, 5rem);
-&nbsp;
-  label {
-    color: var(--font-color-contrast);
-  }
-&nbsp;
-  input {
-    width: 100%;
-    padding: 0.6rem;
-    font-size: large;
-    text-align: end;
-&nbsp;
-    border: 1px solid var(--font-color-contrast);
-    border-radius: 4px;
-&nbsp;
-    &amp;:focus {
-      outline: 3px solid var(--font-color-contrast);
-      outline-offset: 2px;
-    }
-  }
+.wrapper.app {
+  height: 100vh;
+  width: min(85vw, 38rem);
+  margin: auto;
 }
 &lt;/style&gt;
 &nbsp;</pre></td></tr></table></pre>
