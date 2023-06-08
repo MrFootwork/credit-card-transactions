@@ -22,20 +22,20 @@ context('Card Selection', () => {
 
     const cardTypes = ['private', 'business'];
 
-    cardTypes.forEach((cardType) => {
+    cardTypes.forEach((type) => {
       cardAreas.forEach((area) => {
-        cy.get(`.wrapper.card.${cardType}`)
+        cy.get(`.wrapper.card.${type}`)
           .click(`${area}`, { force: true })
-          .get(`.wrapper.card.${cardType}>input`)
+          .get(`.wrapper.card.${type}>input`)
           .should('be.checked')
-          .get(`.wrapper.card.${oppositeOf(cardType)}>input`)
+          .get(`.wrapper.card.${oppositeOf(type)}>input`)
           .should('not.be.checked');
       });
     });
 
-    function oppositeOf(cardType) {
+    function oppositeOf(inputType) {
       const oppositeIndex =
-        1 - cardTypes.findIndex((type) => type === cardType);
+        1 - cardTypes.findIndex((currentType) => currentType === inputType);
       return cardTypes[oppositeIndex];
     }
   });
