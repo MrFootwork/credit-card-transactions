@@ -1,8 +1,18 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect } from 'vitest';
 
-describe("import vue components", () => {
-  test("normal imports as expected", async () => {
-    const cmp = await import("../components/AmountFilter.vue");
-    expect(cmp).toBeDefined();
+describe('import vue components', () => {
+  const componentFileNames = [
+    'AmountFilter',
+    'CardSelector',
+    'CardSelectorBankingCard',
+    'TransactionList',
+    'TransactionListItem',
+  ];
+
+  componentFileNames.forEach((fileName) => {
+    test(`import ${fileName}.vue as expected`, async () => {
+      const cmp = await import(`../components/${fileName}.vue`);
+      expect(cmp).toBeDefined();
+    });
   });
 });

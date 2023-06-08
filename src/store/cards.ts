@@ -1,10 +1,11 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-import { cards as rawData } from "../../data/cards";
-import type Card from "../model/card.d.ts";
+// @ts-expect-error
+import { cards as rawData } from '../../data/cards';
+import type Card from '../model/card.d.ts';
 
-export const useCards = defineStore("cards", () => {
+export const useCards = defineStore('cards', () => {
   // state
   const cards = ref<Card[]>([]);
   // getters (computed())
