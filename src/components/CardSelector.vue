@@ -8,7 +8,7 @@ const { cards } = storeToRefs(cardsStore);
 </script>
 
 <template>
-  <ul class="wrapper">
+  <ul class="wrapper card selector" id="card-selector">
     <!-- FIXME add loader skeleton -->
     <CardSelectorBankingCard
       v-for="card in cards"
@@ -19,7 +19,7 @@ const { cards } = storeToRefs(cardsStore);
 </template>
 
 <style scoped lang="scss">
-.wrapper {
+.wrapper.card.selector {
   display: flex;
   justify-content: space-between;
   align-items: space-between;

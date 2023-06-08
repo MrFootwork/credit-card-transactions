@@ -29,7 +29,7 @@ watch(
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper" id="amount-filter">
     <label for="input-amount"><h3>Amount Filter</h3></label>
     <input id="input-amount" ref="inputRef" />
   </div>
