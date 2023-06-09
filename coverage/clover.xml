@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1686253809092" clover="3.2.0">
-  <project timestamp="1686253809092" name="All files">
-    <metrics statements="476" coveredstatements="384" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="476" coveredelements="384" complexity="0" loc="476" ncloc="476" packages="5" files="12" classes="12"/>
+<coverage generated="1686299846173" clover="3.2.0">
+  <project timestamp="1686299846173" name="All files">
+    <metrics statements="474" coveredstatements="382" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="474" coveredelements="382" complexity="0" loc="474" ncloc="474" packages="5" files="12" classes="12"/>
     <package name="data">
       <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="cards.js" path="C:\Users\ting\Desktop\web-projects\credit-card-transactions\data\cards.js">
@@ -28,7 +28,7 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="264" coveredstatements="264" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="262" coveredstatements="262" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="AmountFilter.vue" path="C:\Users\ting\Desktop\web-projects\credit-card-transactions\src\components\AmountFilter.vue">
         <metrics statements="61" coveredstatements="61" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -217,7 +217,7 @@
         <line num="90" count="1" type="stmt"/>
       </file>
       <file name="TransactionList.vue" path="C:\Users\ting\Desktop\web-projects\credit-card-transactions\src\components\TransactionList.vue">
-        <metrics statements="40" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="38" coveredstatements="38" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -256,8 +256,6 @@
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
       </file>
       <file name="TransactionListItem.vue" path="C:\Users\ting\Desktop\web-projects\credit-card-transactions\src\components\TransactionListItem.vue">
         <metrics statements="46" coveredstatements="46" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
