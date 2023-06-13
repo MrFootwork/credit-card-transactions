@@ -8,7 +8,7 @@ const { transactions } = storeToRefs(transactionStore);
 </script>
 
 <template>
-  <TransitionGroup name="list" tag="ul" id="transaction-list">
+  <TransitionGroup id="transaction-list" name="list" tag="ul">
     <TransactionListItem
       v-for="transaction in transactions"
       :key="transaction.id"
